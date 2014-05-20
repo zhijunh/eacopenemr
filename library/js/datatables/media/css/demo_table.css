@@ -130,6 +130,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables display
  */
+ 
 table.display {
 	margin: 0 auto;
 	clear: both;
@@ -169,6 +170,7 @@ table.display tr.heading2 td {
 
 table.display td {
 	padding: 3px 10px;
+	font-size:13px
 }
 
 table.display td.center {
@@ -251,7 +253,6 @@ tr.odd {
 tr.even {
 	background-color: white;
 }
-
 
 
 
@@ -360,9 +361,9 @@ table.display tr.odd.row_selected td {
 
 
 /*
- * Sorting classes for columns
+ * Sorting classes for columns   disabled
  */
-/* For the standard odd/even */
+/* For the standard odd/even 
 tr.odd td.sorting_1 {
 	background-color: #FFFFFF;
 }
@@ -386,7 +387,7 @@ tr.even td.sorting_2 {
 tr.even td.sorting_3 {
 	background-color: #FFFFFF;
 }
-
+*/
 
 /* For the Conditional-CSS grading rows */
 /*
@@ -572,4 +573,14 @@ div.box {
 	overflow: auto;
 	border: 1px solid #8080FF;
 	background-color: #E5E5FF;
+}
+
+/*
+ * Hover, change color
+ */
+tr:hover{
+	background: #09C;
+	cursor: hand;
+	color: #fff;
+	font-weight:bold
 }
