@@ -53,7 +53,7 @@ a:hover {
 }
 
 .body_title .text a{
-color: 	#FFE4C4;
+color: 	#000000;
 }
 
 .text a:hover{
@@ -172,7 +172,7 @@ background-color:#B0C9EE;
 }
 
 #current_patient a{
-color:#FFE4C4;;
+color:#FFE4C4;
 }
 
 #current_patient a:hover {
@@ -180,7 +180,7 @@ color:#FFE4C4;;
 }
 
 #showMenuLink{
-color:#FFE4C4;;
+color:#000000;
 }
 
 #showMenuLink:hover {
@@ -188,7 +188,7 @@ color:#FFE4C4;;
 }
 
 #current_encounter a{
-color:#FFE4C4;;
+color:#FFE4C4;
 }
 
 #current_encounter a:hover{
