@@ -1,15 +1,15 @@
 <html>
 <head>
-<link rel="stylesheet" href="messages.css" type="text/css">
+<link href="../../themes/mailbox.css" rel="stylesheet" type="text/css">
 </head>
 <body class="body_top">
     <form id="mailboxform" name="mailboxform" method="POST" action="">
     <!--Wrapper Table Begins-->
     <table id="wrappertable" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%;background-color:#FFFFFF;" align="center">
-        <tr style="width:100%;height:70px;">
+        <tr style="width:100%;height:60px;">
             <td colspan="1">
                 <!--Header Table Begins-->
-                <table id="headertable" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:70px;font-size:15px;" >
+                <table id="headertable" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:60px;font-size:15px;" >
                     <tr style="line-height:12px;">
 <!--                        <td class="border topbar">
                             &nbsp;
@@ -30,10 +30,10 @@
                     </tr>
                 </table><!--Header Table Ends Here-->
             </td>
-        </tr>
-            <td style="width:100%;height:100%;background-color:#F0F0F0; border-collapse:collapse;vertical-align:top;" align="left">
+        </tr><!--content outline starts here-->
+            <td class="content_outline" >
                 <!--Content Begins-->
-                <iframe src="messages.php" name="frame1" frameborder="0" height="95%" width="100%" style="font-size:12px;padding-left:2px;padding-top:2px;"></iframe>    
+                <iframe src="messages.php" name="frame1" frameborder="0" height="95%" width="100%" style="font-size:12px;padding-left:2px;padding-top:0px;"></iframe>    
                 <!--Content Ends Here-->
             </td>  
         </tr>
