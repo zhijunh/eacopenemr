@@ -33,16 +33,15 @@ require_once("$srcdir/formatting.inc.php");
 
 <?php html_header_show();?>
 <link rel="stylesheet" href="<?php echo $css_header;?>" type="text/css">
-<link rel="stylesheet" href="messages.css" type="text/css">
 <script type="text/javascript" src="../../../library/dialog.js"></script>
 <script type="text/javascript" src="../../../library/textformat.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/js/jquery.js"></script>
 </head>
 
 <body class="body_top">
-<table width="100%" height="100%" border="0" background-color:#F0F0F0>
+<table width="100%" height="100%" border="0" >
   <tr>
-    <td style="width:100%;height:100%;background-color:#F0F0F0;border-collapse:collapse;vertical-align:top;">
+    <td class="messages" >
 
 <?php       
         
@@ -100,19 +99,19 @@ else {
 //show the activity links
 if (empty($task) || $task=="add" || $task=="delete") { ?>
       <?php if ($active == "all") { ?>
-      <span><?php echo xlt('Show All'); ?></span>
+      <span class="show"><?php echo xlt('Show All'); ?></span>
       <?php } else { ?>
       <a href="messages.php" class="link" onClick="top.restoreSession()"><span><?php echo xlt('Show All'); ?></span></a>
       <?php } ?>
 |
 <?php if ($active == '1') { ?>
-<span><?php echo xlt('Show Active'); ?></span>
+<span class="show"><?php echo xlt('Show Active'); ?></span>
 <?php } else { ?>
 <a href="messages.php?form_active=1" class="link" onClick="top.restoreSession()"><span><?php echo xlt('Show Active'); ?></span></a>
 <?php } ?>
 |
 <?php if ($active == '0') { ?>
-<span><?php echo xlt('Show Inactive'); ?></span>
+<span class="show"><?php echo xlt('Show Inactive'); ?></span>
 <?php } else { ?>
 <a href="messages.php?form_inactive=1" class="link" onClick="top.restoreSession()"><span><?php echo xlt('Show Inactive'); ?></span></a>
 <?php } ?>
@@ -477,20 +476,20 @@ else {
     <table width=100%><tr><td><table border=0 cellpadding=1 cellspacing=0 width=100%  style=\"border-left: 0px #000000 solid; border-right: 0px #000000 solid; border-bottom: 0px #000000 solid;\">
     <form name=MessageList action=\"messages.php?showall=".attr($showall)."&sortby=".attr($sortby)."&sortorder=".attr($sortorder)."&begin=".attr($begin)."&$activity_string_html\" method=post>
     <input type=hidden name=task value=delete>
-        <tr height=\"24\" style=\"background:lightgrey\">
+        <tr height=\"24\" class=message_title_bar >  
             <td align=\"center\" width=\"25\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\"><input type=checkbox id=\"checkAll\" onclick=\"selectAll()\"></td>
-            <td width=\"20%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td width=\"20%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=message_bold>&nbsp;<b>" .
               htmlspecialchars( xl('From'), ENT_NOQUOTES) . "</b> $sortlink[0]</td>
-            <td width=\"20%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td width=\"20%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=message_bold>&nbsp;<b>" .
               htmlspecialchars( xl('Patient'), ENT_NOQUOTES) . "</b> $sortlink[1]</td>
-            <td style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=message_bold>&nbsp;<b>" .
               htmlspecialchars( xl('Type'), ENT_NOQUOTES) . "</b> $sortlink[2]</td>
-            <td width=\"15%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td width=\"15%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=message_bold>&nbsp;<b>" .
               htmlspecialchars( xl('Date'), ENT_NOQUOTES) . "</b> $sortlink[3]</td>
-            <td width=\"15%\" style=\"border-bottom: 0px #000000 solid; \" class=bold>&nbsp;<b>" .
+            <td width=\"15%\" style=\"border-bottom: 0px #000000 solid; \" class=message_bold>&nbsp;<b>" .
               htmlspecialchars( xl('Status'), ENT_NOQUOTES) . "</b> $sortlink[4]</td>
         </tr>";
-        // Display the Messages table body.
+        // Display the Messages table body. Change the style of Message title bar
         $count = 0;
         $result = getPnotesByUser($active,$show_all,$_SESSION['authUser'],false,$sortby,$sortorder,$begin,$listnumber);
         while ($myrow = sqlFetchArray($result)) {
@@ -531,7 +530,7 @@ else {
     </form></table>
     <table border=0 cellpadding=5 cellspacing=0 width=100%>
         <tr>
-            <td class=\"text\"><a href=\"messages.php?showall=".attr($showall)."&sortby=".attr($sortby)."&sortorder=".attr($sortorder)."&begin=".attr($begin)."&task=addnew&$activity_string_html\" onclick=\"top.restoreSession()\">" .
+            <td class=link><a href=\"messages.php?showall=".attr($showall)."&sortby=".attr($sortby)."&sortorder=".attr($sortorder)."&begin=".attr($begin)."&task=addnew&$activity_string_html\" onclick=\"top.restoreSession()\">" .
               htmlspecialchars( xl('Add New'), ENT_NOQUOTES) . "</a> &nbsp; <a href=\"javascript:confirmDeleteSelected()\" onclick=\"top.restoreSession()\">" .
               htmlspecialchars( xl('Delete'), ENT_NOQUOTES) . "</a></td>
             <td align=right class=\"text\">$prevlink &nbsp; $end of $total &nbsp; $nextlink</td>
