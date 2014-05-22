@@ -102,7 +102,7 @@
   'ros' => array(xl('Roster')    , 0, 'reports/players_report.php?embed=1'),
   'cal' => array(xl('Calendar')  , 0, 'main/main_info.php'),
   'app' => array(xl('Portal Activity')  , 0, '../myportal/index.php'),
-  'msg' => array(xl('Messages')  , 0, 'main/messages/messages.php?form_active=1'),
+  'msg' => array(xl('Messages')  , 0, 'main/messages/mailbox.php?form_active=1'),
   'pwd' => array(xl('Password')  , 0, 'usergroup/user_info.php'),
   'prf' => array(xl('Preferences')  , 0, 'super/edit_globals.php?mode=user'),
   'adm' => array(xl('Admin')     , 0, 'usergroup/admin_frameset.php'),
@@ -556,7 +556,7 @@ function genFindBlock() {
 
 function goHome() {
     top.frames['RTop'].location='<?php echo $GLOBALS['default_top_pane']?>';
-    top.frames['RBot'].location='messages/messages.php?form_active=1';
+    top.frames['RBot'].location='messages/mailbox.php?form_active=1';
 }
 
 //Function to clear active patient and encounter in the server side
@@ -570,7 +570,7 @@ function clearactive() {
 	  success:function( msg ) {
 		clearPatient();
 		top.frames['RTop'].location='<?php echo $GLOBALS['default_top_pane']?>';
-		top.frames['RBot'].location='messages/messages.php?form_active=1';
+		top.frames['RBot'].location='messages/mailbox.php?form_active=1';
 	  }
 	});
     
@@ -899,7 +899,7 @@ function removeOptionSelected(EncounterId)
  }
 // Treeview activation stuff:
 $(document).ready(function(){
-	$('input').attr('checked', false);  // This sentence and the following are used to unchecked bot as default
+	$('input').attr('checked', true);  // This sentence and the following are used to unchecked bot as default
     toggleFrame(2);    
   if(3 == <?php echo $GLOBALS['concurrent_layout'] ?>){
     $("#navigation-slide > li > a.collapsed + ul").slideToggle("medium");
