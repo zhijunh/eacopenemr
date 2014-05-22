@@ -1,0 +1,32 @@
+@charset "utf-8";
+/*  Mailbox */
+.border{
+/*  border:0px solid #EEEEEE;*/
+    border-radius:10px 10px 0px 0px;
+    border-bottom:none;
+    border-right-style:solid ;
+    border-right-width:thin;   
+    border-bottom:none;
+    border-left:none;
+    border-top:none;
+    border-color:#838383;
+    -moz-box-shadow: inset -5px -3px 15px #c4c4c4;
+    -webkit-box-shadow: inset -5px -3px 15px #c4c4c4;
+    box-shadow: inset -5px -3px 15px #c4c4c4;
+}
+/*.borderright{ */
+/*  border:0px solid #EEEEEE;*/
+/*  border-radius:0px 10px 0px 0px;
+    border-bottom:none;*/
+/*}  */
+.topbar{
+    background-color:lightgrey;
+}
+
+tr.hover{
+	font-weight: bolder
+	cursor: hand
+}
+
+
+	
