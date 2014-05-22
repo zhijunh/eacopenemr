@@ -53,7 +53,7 @@ a:hover {
 }
 
 .body_title .text a{
-color: 	#000000;
+color: 	#FFE4C4;
 }
 
 .text a:hover{
@@ -180,7 +180,7 @@ color:#FFE4C4;
 }
 
 #showMenuLink{
-color:#000000;
+color:#FFE4C4;
 }
 
 #showMenuLink:hover {
@@ -210,7 +210,8 @@ color:#ff5555;
 .body_top { background-color: transparent; margin: 8px }    /* $top_bg_line */
 .bgcolor2 { background-color: #FFFFFF; }    /* $GLOBALS['style']['BGCOLOR2'] */
 .body_bottom { background: url('../pic/aquabg.gif') repeat; margin: 8px }  /* $bottom_bg_line */
-.body_title { background-color: #ffffff;color: #ffffff; }  /* $title_bg_line */
+.body_title { background-color: #335889;color: #ffffff; }  /* $title_bg_line */
+.body_title_2 { background-color: #ffffff;color: #ffffff; } /*login title line */
 .body_tite a {
   color: #FFFFFF;
   text-decoration: none;
@@ -1214,6 +1215,31 @@ font-size:9pt;
 }
 .cke_contents {
 height: 300px !important;
+}
+
+/* messages.php */
+.messages {
+	width:100%;
+	height:100%;
+	background-color: #b0c9ee;
+	border-collapse:collapse;
+	vertical-align:top;
+}
+.message_title_bar {
+	background-color:#014c85;
+}
+
+.message_bold{
+	font-family: Tahoma, Geneva, sans-serif;
+    text-decoration: none;
+    font-size: 10pt;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.show{
+	font-family: "Arial Black", Gadget, sans-serif;
+	color: #014c85;
 }
 
 /* Write off*/
