@@ -33,16 +33,16 @@ require_once("$srcdir/formatting.inc.php");
 
 <?php html_header_show();?>
 <link rel="stylesheet" href="<?php echo $css_header;?>" type="text/css">
+<link rel="stylesheet" href="messages.css" type="text/css">
 <script type="text/javascript" src="../../../library/dialog.js"></script>
 <script type="text/javascript" src="../../../library/textformat.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/js/jquery.js"></script>
 </head>
 
 <body class="body_top">
-
-<span class="title"><?php echo xlt('Message and Reminder Center'); ?></span>
-<br /><br />
-<span class="title"><?php echo xlt('Reminders'); ?></span>
+<table width="100%" height="100%" border="0" background-color:#F0F0F0>
+  <tr>
+    <td style="width:100%;height:100%;background-color:#F0F0F0;border-collapse:collapse;vertical-align:top;">
 
 <?php       
         
@@ -90,30 +90,33 @@ else {
 }
 }
 ?>
-<br>
-<table><tr><td><span class="title"><?php echo htmlspecialchars( xl('Messages'), ENT_NOQUOTES); ?></span> <a class='more' href=<?php echo $lnkvar; ?></a></td></tr></table>
-<?php
+      <br>
+      <table>
+        <tr>
+          <td><span class="title"><?php echo htmlspecialchars( xl('Messages'), ENT_NOQUOTES); ?></span> <a class='more' href=<?php echo $lnkvar; ?></a></a></td>
+        </tr>
+      </table>
+      <?php
 //show the activity links
 if (empty($task) || $task=="add" || $task=="delete") { ?>
-  <?php if ($active == "all") { ?>
-    <span><?php echo xlt('Show All'); ?></span>
-  <?php } else { ?>
-    <a href="messages.php" class="link" onclick="top.restoreSession()"><span><?php echo xlt('Show All'); ?></span></a>
-  <?php } ?>
-  |
-  <?php if ($active == '1') { ?>
-    <span><?php echo xlt('Show Active'); ?></span>
-  <?php } else { ?>
-    <a href="messages.php?form_active=1" class="link" onclick="top.restoreSession()"><span><?php echo xlt('Show Active'); ?></span></a>
-  <?php } ?>
-  |
-  <?php if ($active == '0') { ?>
-    <span><?php echo xlt('Show Inactive'); ?></span>
-  <?php } else { ?>
-    <a href="messages.php?form_inactive=1" class="link" onclick="top.restoreSession()"><span><?php echo xlt('Show Inactive'); ?></span></a>
-  <?php } ?>
+      <?php if ($active == "all") { ?>
+      <span><?php echo xlt('Show All'); ?></span>
+      <?php } else { ?>
+      <a href="messages.php" class="link" onClick="top.restoreSession()"><span><?php echo xlt('Show All'); ?></span></a>
+      <?php } ?>
+|
+<?php if ($active == '1') { ?>
+<span><?php echo xlt('Show Active'); ?></span>
+<?php } else { ?>
+<a href="messages.php?form_active=1" class="link" onClick="top.restoreSession()"><span><?php echo xlt('Show Active'); ?></span></a>
 <?php } ?>
-
+|
+<?php if ($active == '0') { ?>
+<span><?php echo xlt('Show Inactive'); ?></span>
+<?php } else { ?>
+<a href="messages.php?form_inactive=1" class="link" onClick="top.restoreSession()"><span><?php echo xlt('Show Inactive'); ?></span></a>
+<?php } ?>
+<?php } ?>
 <?php
 switch($task) {
     case "add" :
@@ -199,24 +202,24 @@ echo "
 <input type=hidden name=noteid id=noteid value=".htmlspecialchars( $noteid, ENT_QUOTES).">
 <input type=hidden name=task id=task value=add>";
 ?>
-<div id="pnotes"><center>
-<table border='0' cellspacing='8'>
- <tr>
-  <td class='text'>
-   <b><?php echo htmlspecialchars( xl('Type'), ENT_NOQUOTES); ?>:</b>
-   <?php
+<div id="pnotes">
+  <center>
+    <table border='0' cellspacing='8'>
+      <tr>
+        <td class='text'><b><?php echo htmlspecialchars( xl('Type'), ENT_NOQUOTES); ?>:</b>
+          <?php
    if ($title == "") {
        $title = "Unassigned";
    }
    // Added 6/2009 by BM to incorporate the patient notes into the list_options listings.
     generate_form_field(array('data_type'=>1,'field_id'=>'note_type','list_id'=>'note_type','empty_title'=>'SKIP','order_by'=>'title'), $title);
    ?>
-   &nbsp; &nbsp;
-   <?php if ($task != "addnew" && $result['pid'] != 0) { ?>
-     <a class="patLink" onclick="goPid('<?php echo attr($result['pid']);?>')"><?php echo htmlspecialchars( xl('Patient'), ENT_NOQUOTES); ?>:</a>
-   <?php } else { ?>
-     <b class='<?php echo ($task=="addnew"?"required":"") ?>'><?php echo htmlspecialchars( xl('Patient'), ENT_NOQUOTES); ?>:</b>
- <?php
+          &nbsp; &nbsp;
+          <?php if ($task != "addnew" && $result['pid'] != 0) { ?>
+          <a class="patLink" onClick="goPid('<?php echo attr($result['pid']);?>')"><?php echo htmlspecialchars( xl('Patient'), ENT_NOQUOTES); ?>:</a>
+          <?php } else { ?>
+          <b class='<?php echo ($task=="addnew"?"required":"") ?>'><?php echo htmlspecialchars( xl('Patient'), ENT_NOQUOTES); ?>:</b>
+          <?php
   }
  if ($reply_to) {
   $prow = sqlQuery("SELECT lname, fname " .
@@ -226,29 +229,26 @@ echo "
    if ($patientname == '') {
        $patientname = xl('Click to select');
    } ?>
-   <input type='text' size='10' name='form_patient' style='width:150px;<?php
+          <input type='text' size='10' name='form_patient' style='width:150px;<?php
       echo ($task=="addnew"?"cursor:pointer;cursor:hand;":"") ?>' value='<?php
       echo htmlspecialchars($patientname, ENT_QUOTES); ?>' <?php
       echo (($task=="addnew" || $result['pid']==0) ? "onclick='sel_patient()' readonly":"disabled") ?> title='<?php
       echo ($task=="addnew"?(htmlspecialchars( xl('Click to select patient'), ENT_QUOTES)):"") ?>'  />
-   <input type='hidden' name='reply_to' id='reply_to' value='<?php echo htmlspecialchars( $reply_to, ENT_QUOTES) ?>' />
-   &nbsp; &nbsp;
-   <b><?php echo htmlspecialchars( xl('Status'), ENT_NOQUOTES); ?>:</b>
-    <?php
+          <input type='hidden' name='reply_to' id='reply_to' value='<?php echo htmlspecialchars( $reply_to, ENT_QUOTES) ?>' />
+          &nbsp; &nbsp; <b><?php echo htmlspecialchars( xl('Status'), ENT_NOQUOTES); ?>:</b>
+          <?php
    if ($form_message_status == "") {
        $form_message_status = 'New';
    }
-    generate_form_field(array('data_type'=>1,'field_id'=>'message_status','list_id'=>'message_status','empty_title'=>'SKIP','order_by'=>'title'), $form_message_status); ?>
-  </td>
-</tr>
-<tr>
-  <td class='text'>
-   <b><?php echo htmlspecialchars( xl('To'), ENT_QUOTES); ?>:</b>
-   <input type='textbox' name='assigned_to_text' id='assigned_to_text' size='40' readonly='readonly'
+    generate_form_field(array('data_type'=>1,'field_id'=>'message_status','list_id'=>'message_status','empty_title'=>'SKIP','order_by'=>'title'), $form_message_status); ?></td>
+      </tr>
+      <tr>
+        <td class='text'><b><?php echo htmlspecialchars( xl('To'), ENT_QUOTES); ?>:</b>
+          <input type='textbox' name='assigned_to_text' id='assigned_to_text' size='40' readonly='readonly'
     value='<?php echo htmlspecialchars(xl("Select Users From The Dropdown List"), ENT_QUOTES)?>' >
-   <input type='hidden' name='assigned_to' id='assigned_to' >
-   <select name='users' id='users' onchange='addtolist(this);' >
-<?php
+          <input type='hidden' name='assigned_to' id='assigned_to' >
+          <select name='users' id='users' onChange='addtolist(this);' >
+            <?php
   echo "<option value='" . htmlspecialchars( '--', ENT_QUOTES) . "'";
   echo ">" . htmlspecialchars( xl('Select User'), ENT_NOQUOTES);
   echo "</option>\n";
@@ -266,11 +266,9 @@ $ures = sqlStatement("SELECT username, fname, lname FROM users " .
   echo ">" . htmlspecialchars( '-Patient-', ENT_NOQUOTES);
   echo "</option>\n";
 ?>
-   </select>
-  </td>
- </tr>
-
-<?php
+          </select></td>
+      </tr>
+      <?php
 if ($noteid) {
   // Get the related document IDs if any.
   $tmp = sqlStatement("SELECT id1 FROM gprelations WHERE " .
@@ -314,11 +312,8 @@ if ($noteid) {
   }
 }
 ?>
-
- <tr>
-  <td>
-
-<?php
+      <tr>
+        <td><?php
 
 if ($noteid) {
     $body = preg_replace('/(:\d{2}\s\()'.$result['pid'].'(\sto\s)/','${1}'.$patientname.'${2}',$body);
@@ -327,25 +322,23 @@ if ($noteid) {
 }
 
 ?>
-   <textarea name='note' id='note' rows='8' style="width: 660px; "><?php echo htmlspecialchars( $note, ENT_NOQUOTES) ?></textarea>
-  </td>
- </tr>
-</table>
-
-<?php if ($noteid) { ?>
-<!-- This is for displaying an existing note. -->
-<input type="button" id="newnote" value="<?php echo htmlspecialchars( xl('Send message'), ENT_QUOTES); ?>">
-<input type="button" id="printnote" value="<?php echo htmlspecialchars( xl('Print message'), ENT_QUOTES); ?>">
-<input type="button" id="cancel" value="<?php echo htmlspecialchars( xl('Cancel'), ENT_QUOTES); ?>">
-<?php } else { ?>
-<!-- This is for displaying a new note. -->
-<input type="button" id="newnote" value="<?php echo htmlspecialchars( xl('Send message'), ENT_QUOTES); ?>">
-<input type="button" id="cancel" value="<?php echo htmlspecialchars( xl('Cancel'), ENT_QUOTES); ?>">
-<?php }
+          <textarea name='note' id='note' rows='8' style="width: 660px; "><?php echo htmlspecialchars( $note, ENT_NOQUOTES) ?></textarea></td>
+      </tr>
+    </table>
+    <?php if ($noteid) { ?>
+    <!-- This is for displaying an existing note. -->
+    <input type="button" id="newnote" value="<?php echo htmlspecialchars( xl('Send message'), ENT_QUOTES); ?>">
+    <input type="button" id="printnote" value="<?php echo htmlspecialchars( xl('Print message'), ENT_QUOTES); ?>">
+    <input type="button" id="cancel" value="<?php echo htmlspecialchars( xl('Cancel'), ENT_QUOTES); ?>">
+    <?php } else { ?>
+    <!-- This is for displaying a new note. -->
+    <input type="button" id="newnote" value="<?php echo htmlspecialchars( xl('Send message'), ENT_QUOTES); ?>">
+    <input type="button" id="cancel" value="<?php echo htmlspecialchars( xl('Cancel'), ENT_QUOTES); ?>">
+    <?php }
 ?>
-
-<br>
-</form></center></div>
+    <br>
+  </center>
+</div>
 <script language="javascript">
 
 // jQuery stuff to make the page a little easier to use
@@ -428,7 +421,8 @@ $(document).ready(function(){
     }
   }
  
-</script><?php
+</script>
+<?php
 }
 else {
 
@@ -480,20 +474,20 @@ else {
     }
     // Display the Messages table header.
     echo "
-    <table width=100%><tr><td><table border=0 cellpadding=1 cellspacing=0 width=90%  style=\"border-left: 1px #000000 solid; border-right: 1px #000000 solid; border-top: 1px #000000 solid;\">
+    <table width=100%><tr><td><table border=0 cellpadding=1 cellspacing=0 width=100%  style=\"border-left: 0px #000000 solid; border-right: 0px #000000 solid; border-bottom: 0px #000000 solid;\">
     <form name=MessageList action=\"messages.php?showall=".attr($showall)."&sortby=".attr($sortby)."&sortorder=".attr($sortorder)."&begin=".attr($begin)."&$activity_string_html\" method=post>
     <input type=hidden name=task value=delete>
         <tr height=\"24\" style=\"background:lightgrey\">
-            <td align=\"center\" width=\"25\" style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\"><input type=checkbox id=\"checkAll\" onclick=\"selectAll()\"></td>
-            <td width=\"20%\" style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td align=\"center\" width=\"25\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\"><input type=checkbox id=\"checkAll\" onclick=\"selectAll()\"></td>
+            <td width=\"20%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
               htmlspecialchars( xl('From'), ENT_NOQUOTES) . "</b> $sortlink[0]</td>
-            <td width=\"20%\" style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td width=\"20%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
               htmlspecialchars( xl('Patient'), ENT_NOQUOTES) . "</b> $sortlink[1]</td>
-            <td style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
               htmlspecialchars( xl('Type'), ENT_NOQUOTES) . "</b> $sortlink[2]</td>
-            <td width=\"15%\" style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\" class=bold>&nbsp;<b>" .
+            <td width=\"15%\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\" class=bold>&nbsp;<b>" .
               htmlspecialchars( xl('Date'), ENT_NOQUOTES) . "</b> $sortlink[3]</td>
-            <td width=\"15%\" style=\"border-bottom: 1px #000000 solid; \" class=bold>&nbsp;<b>" .
+            <td width=\"15%\" style=\"border-bottom: 0px #000000 solid; \" class=bold>&nbsp;<b>" .
               htmlspecialchars( xl('Status'), ENT_NOQUOTES) . "</b> $sortlink[4]</td>
         </tr>";
         // Display the Messages table body.
@@ -517,25 +511,25 @@ else {
             $count++;
             echo "
             <tr id=\"row$count\" style=\"background:white\" height=\"24\">
-                <td align=\"center\" style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\"><input type=checkbox id=\"check$count\" name=\"delete_id[]\" value=\"" .
+                <td align=\"center\" style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\"><input type=checkbox id=\"check$count\" name=\"delete_id[]\" value=\"" .
 	          htmlspecialchars( $myrow['id'], ENT_QUOTES) . "\" onclick=\"if(this.checked==true){ selectRow('row$count'); }else{ deselectRow('row$count'); }\"></td>
-                <td style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
+                <td style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
 	          htmlspecialchars( $name, ENT_NOQUOTES) . "</td><td width=5></td></tr></table></td>
-                <td style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\"><a href=\"messages.php?showall=".attr($showall)."&sortby=".attr($sortby)."&sortorder=".attr($sortorder)."&begin=".attr($begin)."&task=edit&noteid=" .
+                <td style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\"><a href=\"messages.php?showall=".attr($showall)."&sortby=".attr($sortby)."&sortorder=".attr($sortorder)."&begin=".attr($begin)."&task=edit&noteid=" .
 	          htmlspecialchars( $myrow['id'], ENT_QUOTES) . "&$activity_string_html\" onclick=\"top.restoreSession()\">" .
 		  htmlspecialchars( $patient, ENT_NOQUOTES) . "</a></td><td width=5></td></tr></table></td>
-                <td style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
+                <td style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
 	          htmlspecialchars( $myrow['title'], ENT_NOQUOTES) . "</td><td width=5></td></tr></table></td>
-                <td style=\"border-bottom: 1px #000000 solid; border-right: 1px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
+                <td style=\"border-bottom: 0px #000000 solid; border-right: 0px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
 	          htmlspecialchars( oeFormatShortDate(substr($myrow['date'], 0, strpos($myrow['date'], " "))), ENT_NOQUOTES) . "</td><td width=5></td></tr></table></td>
-                <td style=\"border-bottom: 1px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
+                <td style=\"border-bottom: 0px #000000 solid;\"><table cellspacing=0 cellpadding=0 width=100%><tr><td width=5></td><td class=\"text\">" .
 	          htmlspecialchars( $myrow['message_status'], ENT_NOQUOTES) . "</td><td width=5></td></tr></table></td>
             </tr>";
         }
     // Display the Messages table footer.
     echo "
     </form></table>
-    <table border=0 cellpadding=5 cellspacing=0 width=90%>
+    <table border=0 cellpadding=5 cellspacing=0 width=100%>
         <tr>
             <td class=\"text\"><a href=\"messages.php?showall=".attr($showall)."&sortby=".attr($sortby)."&sortorder=".attr($sortorder)."&begin=".attr($begin)."&task=addnew&$activity_string_html\" onclick=\"top.restoreSession()\">" .
               htmlspecialchars( xl('Add New'), ENT_NOQUOTES) . "</a> &nbsp; <a href=\"javascript:confirmDeleteSelected()\" onclick=\"top.restoreSession()\">" .
@@ -544,6 +538,11 @@ else {
         </tr>
     </table></td></tr></table><br>";
 ?>
+<?php
+}
+?></td>
+  </tr>
+</table>
 <script language="javascript">
 // This is to confirm delete action.
 function confirmDeleteSelected() {
@@ -573,9 +572,6 @@ function selectRow(row) {
 function deselectRow(row) {
     document.getElementById(row).style.background = "#F7F7F7";
 }
-</script><?php
-}
-?>
-
+</script>
 </body>
 </html>
