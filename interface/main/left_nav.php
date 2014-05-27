@@ -1410,6 +1410,7 @@ if (!empty($reg)) {
       <?php // genTreeLink('RTop','rep','Other'); ?>
     </ul>
   </li>
+  <?php } // end hide reports?> 
   <li><a class="collapsed" id="misimg" ><span><?php xl('Miscellaneous','e') ?></span></a>
     <ul>
       <?php genTreeLink('RTop','ped',xl('Patient Education')); ?> 
@@ -1429,7 +1430,6 @@ if (!empty($reg)) {
 <?php } // end not athletic team ?>
 
 </ul>
-<?php } // end hide reports?> 
 
 <?php } else { // end ($GLOBALS['concurrent_layout'] == 2 || $GLOBALS['concurrent_layout'] == 3) ?>
 
