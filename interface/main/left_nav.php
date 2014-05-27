@@ -1295,6 +1295,7 @@ if (!empty($reg)) {
     </ul>
   </li>
   <?php } ?>
+  <?php if (!$disallowed['adm']) {  // end hide reports ?>
   <li><a class="collapsed" id="repimg" ><span><?php xl('Reports','e') ?></span></a>
     <ul>
       <li><a class="collapsed_lv2"><span><?php xl('Clients','e') ?></span></a>
@@ -1428,6 +1429,7 @@ if (!empty($reg)) {
 <?php } // end not athletic team ?>
 
 </ul>
+<?php } // end hide reports?> 
 
 <?php } else { // end ($GLOBALS['concurrent_layout'] == 2 || $GLOBALS['concurrent_layout'] == 3) ?>
 
