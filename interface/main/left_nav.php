@@ -899,7 +899,7 @@ function removeOptionSelected(EncounterId)
  }
 // Treeview activation stuff:
 $(document).ready(function(){
-	$('input').attr('checked', true);  // This sentence and the following are used to unchecked bot as default
+	$('input').attr('checked', false);  // This sentence and the following are used to unchecked bot as default
     toggleFrame(2);    
   if(3 == <?php echo $GLOBALS['concurrent_layout'] ?>){
     $("#navigation-slide > li > a.collapsed + ul").slideToggle("medium");
