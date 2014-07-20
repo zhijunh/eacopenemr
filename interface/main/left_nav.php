@@ -958,10 +958,49 @@ $(document).ready(function(){
 
 </script>
 
+    <!-- Bootstrap core CSS -->
+    <link href="../themes/dist/css/eacemr.css" rel="stylesheet">
+    <link href="../themes/dist/css/leftnav.css" rel="stylesheet">
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../themes/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../themes/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
-<body class="body_nav">
-
+<body>
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="#">Scheduler</a></li>
+            <li><a href="#">Messages</a></li>
+            <li><?php genMiscLink('RTop','fin','0',xl('Patients'),'main/finder/dynamic_finder.php'); ?></li>
+            <li><a href="#">Procedures</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Reports</a></li>
+            <li><a href="">Administration</a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+          </ul>
+        </div>
+      </div>
 <form method='post' name='find_patient' target='RTop'
  action='<?php echo $rootdir ?>/main/finder/patient_select.php'>
 
@@ -1511,6 +1550,13 @@ if (!$GLOBALS['athletic_team']) {
 <input type="hidden" name="search_service_code" value='' />
 
 </form>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../themes/dist/js/bootstrap.min.js"></script>
+    <script src="../themes/assets/js/docs.min.js"></script>
 
 <script language='JavaScript'>
 syncRadios();

@@ -98,11 +98,33 @@ else {
 $nav_area_width = $GLOBALS['athletic_team'] ? '230' : '130';
 if (!empty($GLOBALS['gbl_nav_area_width'])) $nav_area_width = $GLOBALS['gbl_nav_area_width'];
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>
 <?php echo text($openemr_name) ?>
 </title>
+
+    
+    <!-- Bootstrap core CSS -->
+    <link href="../themes/dist/css/eacemr.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../themes/dist/css/mainscreen.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 <script type="text/javascript" src="../../library/topdialog.js"></script>
 
 <script language='JavaScript'>
@@ -121,72 +143,31 @@ function allFramesLoaded() {
 
 </head>
 
-<?php
+<body>
+  <div class="navbar navbar-fixed-top" role="navigation" >
+    <iframe src='main_title.php' name='Title' scrolling='no' frameborder='0' height="<?php echo attr($GLOBALS['titleBarHeight']) + 5 ?>" width="100%" style="z-index: 1000"></iframe>
+  </div>
 
-// Please keep in mind that border (mozilla) and framespacing (ie) are the
-// same thing. use both.
-// frameborder specifies a 3d look, not whether there are borders.
+  <div class="container-fluid">
+   <div class="row">
+    <div id="sidebar">
+    <div class="side sidebar">
+      <iframe src='left_nav.php' name='left_nav' id="left_nav" width="100%" height="100%" scrolling="no" frameborder="0" framespacing="0"></iframe>
+      <iframe src='daemon_frame.php' name='Daemon' class="daemon" scrolling='no' frameborder='0' height='0' width="0" scrolling="no" framespacing="0"></iframe>
+    </div>
+    </div>
+    <div class="main">
+      <iframe src='<?php echo $frame1url ?>' name='RTop' id="Rtop" scrolling='auto' width="100%" height="768" frameborder="0" style="z-index: -1"></iframe>
+      <iframe src='messages/mailbox.php?form_active=1' name='RBot' scrolling='auto' class="daemon"></iframe>
+    </div>
+   </div>
+  </div>
 
-if ($GLOBALS['concurrent_layout']) {
-  // start new layout
-  if (empty($GLOBALS['gbl_tall_nav_area'])) {
-    // not tall nav area ?>
-<frameset rows='<?php echo attr($GLOBALS['titleBarHeight']) + 5 ?>,*' frameborder='1' border='1' framespacing='1' onunload='imclosing()'>
- <frame src='main_title.php' name='Title' scrolling='no' frameborder='1' noresize />
- <frameset cols='<?php echo attr($nav_area_width); ?>,*' id='fsbody' frameborder='1' border='4' framespacing='4'>
-  <frameset rows='*,0' frameborder='0' border='0' framespacing='0'>
-   <frame src='left_nav.php' name='left_nav' />
-   <frame src='daemon_frame.php' name='Daemon' scrolling='no' frameborder='0'
-    border='0' framespacing='0' />
-  </frameset>
-<?php if (empty($GLOBALS['athletic_team'])) { ?>
-  <frameset rows='60%,*' id='fsright' bordercolor='#999999' frameborder='1'>
-<?php } else { ?>
-  <frameset rows='100%,*' id='fsright' bordercolor='#999999' frameborder='1'>
-<?php } ?>
-   <frame src='<?php echo $frame1url ?>' name='RTop' scrolling='auto' />
-   <frame src='messages/mailbox.php?form_active=1' name='RBot' scrolling='auto' />
-  </frameset>
- </frameset>
-</frameset>
-
-<?php } else { // use tall nav area ?>
-
-<frameset cols='<?php echo attr($nav_area_width); ?>,*' id='fsbody' frameborder='1' border='4' framespacing='4' onunload='imclosing()'>
- <frameset rows='*,0' frameborder='0' border='0' framespacing='0'>
-  <frame src='left_nav.php' name='left_nav' />
-  <frame src='daemon_frame.php' name='Daemon' scrolling='no' frameborder='0'
-   border='0' framespacing='0' />
- </frameset>
- <frameset rows='<?php echo attr($GLOBALS['titleBarHeight']) + 5 ?>,*' frameborder='1' border='1' framespacing='1'>
-  <frame src='main_title.php' name='Title' scrolling='no' frameborder='1' />
-<?php if (empty($GLOBALS['athletic_team'])) { ?>
-  <frameset rows='60%,*' id='fsright' bordercolor='#999999' frameborder='1' border='4' framespacing='4'>
-<?php } else { ?>
-  <frameset rows='100%,*' id='fsright' bordercolor='#999999' frameborder='1' border='4' framespacing='4'>
-<?php } ?>
-   <frame src='<?php echo $frame1url ?>' name='RTop' scrolling='auto' />
-   <frame src='messages/mailbox.php?form_active=1' name='RBot' scrolling='auto' />
-  </frameset>
- </frameset>
-</frameset>
-
-<?php } // end tall nav area ?>
-
-<?php } else { // start old layout ?>
-
-</head>
-<frameset rows="<?php echo attr($GLOBALS[navBarHeight]).",".attr($GLOBALS[titleBarHeight]) ?>,*"
-  cols="*" frameborder="no" border="0" framespacing="0"
-  onunload="imclosing()">
-  <frame src="main_navigation.php" name="Navigation" scrolling="no" noresize frameborder="no">
-  <frame src="main_title.php" name="Title" scrolling="no" noresize frameborder="no">
-  <frame src='<?php echo $frame1url ?>' name='Main' scrolling='auto' noresize frameborder='no'>
-</frameset>
-<noframes><body bgcolor="#FFFFFF">
-<?php echo xlt('Frame support required'); ?>
-</body></noframes>
-
-<?php } // end old layout ?>
-
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../themes/dist/js/bootstrap.min.js"></script>
+    <script src="../themes/assets/js/docs.min.js"></script>
+  </body>
 </html>
