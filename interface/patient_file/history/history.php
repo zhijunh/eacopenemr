@@ -68,9 +68,6 @@ $(document).ready(function(){
      onclick="top.restoreSession()">
     <span><?php echo htmlspecialchars(xl("Edit"),ENT_NOQUOTES);?></span>
     </a>
-    <a href="../summary/demographics.php" <?php if (!$GLOBALS['concurrent_layout']) echo "target='Main'"; ?> class="css_button" onclick="top.restoreSession()">
-        <span><?php echo htmlspecialchars(xl('Back To Patient'),ENT_NOQUOTES);?></span>
-    </a>
 </div>
 <br/>
 <?php } ?>

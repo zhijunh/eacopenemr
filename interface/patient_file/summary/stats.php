@@ -1,3 +1,4 @@
+<?php include_once '1_header.php'?>
 <?php
 
 //SANITIZE ALL ESCAPES
@@ -14,7 +15,8 @@ include_once("$srcdir/acl.inc");
 include_once("$srcdir/options.inc.php");
 include_once("$srcdir/formdata.inc.php");
 ?>
-
+<html>
+<body>
 <div id="patient_stats_summary">
 
 <?php
@@ -63,7 +65,6 @@ foreach ($ISSUE_TYPES as $key => $arr) {
     {
 	$display_current_medications_below=0;
 	?>
-	<div>
 	    <table id="patient_stats_prescriptions">
 	    <?php if($GLOBALS['erx_enable']){ ?>
 	    <tr><td>
@@ -461,4 +462,7 @@ if($erx_upload_complete == 1){
 ?>
 </table> <!-- end patient_stats_prescriptions -->
 </div>
+</table>
 </div> <!-- end patient_stats_summary -->
+</body>
+</html>
