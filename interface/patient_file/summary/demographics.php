@@ -469,7 +469,7 @@ $(window).load(function() {
 </style>
 </head>
 
-<body>
+<body class="body_top">
 <a href='../reminder/active_reminder_popup.php' id='reminder_popup_link' style='visibility: false;' class='iframe' onclick='top.restoreSession()'></a>
 
 <?php
@@ -557,7 +557,7 @@ if ($GLOBALS['patient_id_category_name']) {
 
 ?>
 
-    <ul class="nav nav-pills" id="myTab">
+    <ul class="nav nav-tabs" id="myTab">
       <li><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
       <li><a href="#notes" data-toggle="tab">Notes</a></li>
       <li><a href="#appointments" data-toggle="tab">Appointments</a></li>
@@ -586,7 +586,7 @@ if ($GLOBALS['patient_id_category_name']) {
          <a href="#demo_edit" class="css_button_small" data-toggle="tab">Edit</a>
       </div>
       <div class="tab-pane" id="demo_edit">
-         <iframe src="demographics_full.php" width="100%" height="900px" frameborder="0"></iframe>
+         <iframe src="demographics_full.php" width="100%" height="600px" frameborder="0"></iframe>
       </div>
       <div class="tab-pane" id="summary">
          <iframe src="stats_full.php" width="100%" height="1000px" scrolling="no" frameborder="0"></iframe>
@@ -595,27 +595,23 @@ if ($GLOBALS['patient_id_category_name']) {
          <iframe src="1_notes.php" width="100%" height="600px" scrolling="no" frameborder="0"></iframe>
       </div>
       <div class="tab-pane" id="appointments">
-         <iframe src="1_appt.php" width="100%" height="500px" scrolling="no" frameborder="0"></iframe>
+         <iframe src="1_appt.php" width="100%" height="600px" scrolling="no" frameborder="0"></iframe>
       </div>
       <div class="tab-pane" id="issues">
          <iframe src="1_issues.php" width="100%" height="600px" scrolling="no" frameborder="0"></iframe>
       </div>
       <div class="tab-pane" id="histories">
-         <iframe src="../history/history.php" width="100%" height="500px" scrolling="no" frameborder="0"></iframe>
+         <iframe src="../history/history.php" width="100%" height="600px" scrolling="no" frameborder="0"></iframe>
       </div>
       <div class="tab-pane" id="reports">
-         <iframe src="../report/patient_report.php" width="100%" height="800px" scrolling="no" frameborder="0"></iframe>
+         <iframe src="../report/patient_report.php" width="100%" height="1000px" scrolling="no" frameborder="0"></iframe>
       </div>
       <div class="tab-pane" id="documents">
          <iframe src="../../../controller.php?document&list&patient_id=<?php echo $pid;?>" width="100%" scrolling="no" height="600px" frameborder="0"></iframe>
       </div>
       <div class="tab-pane" id="transactions">
          <iframe src="../transaction/transactions.php" width="100%" scrolling="no" height="600px" frameborder="0"></iframe>
+      </div>     
       </div>
-
-      
-      
- </div>
-<!-- iframe auto size -->
 </body>
 </html>

@@ -3592,7 +3592,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:focus {
   text-decoration: none;
   background-color: #428bca;
-  font-weight:bolder;
+  /*font-weight:bolder;*/
 }
 .nav > li.disabled > a {
   color: #777;
@@ -4079,6 +4079,17 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-top: 14px;
   margin-bottom: 14px;
 }
+.navbar-btn.btn-lg {
+  margin-top: 1px;
+  margin-bottom: 1px;
+  color: #fff;
+  background-color: #007fff;
+  border-radius: 1px;
+}
+.navbar-btn.btn-lg:hover {
+  font-weight:bolder;
+  background-color: #0265ca;
+}
 .navbar-text {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -4099,6 +4110,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-brand {
   color: #fff;
+  text-align:center;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -4115,14 +4127,20 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:focus {
   color: #fff;
   background-color: transparent;
-  font-weight: bolder;
+  /*font-weight: bolder;*/
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #fff;
   background-color: #0265cb;
-  font-weight: bolder;
+  /*font-weight: bolder;*/
+}
+.navbar-default .navbar-nav > .title_active> a:hover,
+.navbar-default .navbar-nav > .title_active> a:focus {
+  color: #fff;
+  background-color: #0265cb;
+  /*font-weight: bolder;*/
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,

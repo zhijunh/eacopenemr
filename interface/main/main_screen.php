@@ -152,12 +152,12 @@ function allFramesLoaded() {
    <div class="row">
     <div id="sidebar">
     <div class="side sidebar">
-      <iframe src='left_nav.php' name='left_nav' id="left_nav" width="100%" height="100%" scrolling="no" frameborder="0" framespacing="0"></iframe>
+      <iframe src='left_nav.php' name='left_nav' width="100%" height="100%" scrolling="no" frameborder="0" framespacing="0"></iframe>
       <iframe src='daemon_frame.php' name='Daemon' class="daemon" scrolling='no' frameborder='0' height='0' width="0" scrolling="no" framespacing="0"></iframe>
     </div>
     </div>
     <div class="main">
-      <iframe src='<?php echo $frame1url ?>' name='RTop' id="Rtop" scrolling='auto' width="100%" height="768" frameborder="0" style="z-index: -1"></iframe>
+      <iframe src='<?php echo $frame1url ?>' name='RTop' scrolling='auto' width="100%" height="768" frameborder="0"></iframe>
       <iframe src='messages/mailbox.php?form_active=1' name='RBot' scrolling='auto' class="daemon"></iframe>
     </div>
    </div>

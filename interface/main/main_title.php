@@ -84,13 +84,15 @@ include_once('../globals.php');
     }
     function showhideMenu() {
 	var m = parent.document.getElementById("sidebar");
+	var m2 = parent.document.getElementsByTagName("body")[0];
 	var targetdisplay = 'none';
-	var m2 = parent.document.getElementById("hide");
 	if (m.style.display == targetdisplay) {
 		m.style.display = 'block';
+		m2.style.paddingLeft = '180px';
 		document.getElementById("showMenuLink").innerHTML = '<?php echo htmlspecialchars( xl('Hide Menu'), ENT_QUOTES); ?>';
 	} else {
 		m.style.display = targetdisplay;
+		m2.style.paddingLeft = '0px';
 		document.getElementById("showMenuLink").innerHTML = '<?php echo htmlspecialchars( xl('Show Menu'), ENT_QUOTES); ?>';
 	}
     }
@@ -106,23 +108,35 @@ include_once('../globals.php');
     <div class="navbar navbar-default navbar-fixed-top" role="navigation" >
       <div class="container">
         <div class="navbar-header">
-        <button type="button" class="btn btn-primary btn-lg" onclick='javascript:showhideMenu();return false;'><span class="glyphicon glyphicon-tasks"></span></button>
-        </div>
-        <div class="navbar-header">
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="btn btn-lg navbar-btn" onclick='javascript:showhideMenu();return false;'><span class="glyphicon glyphicon-tasks"></span></button>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">EAC EMR</a>
+         </button>
+        </div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">EAC EMR&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">New Patient</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown" >
+          <?php if ($GLOBALS['concurrent_layout']) { ?>
+            <?php if (acl_check('patients','demo','',array('write','addonly') )) { ?>
+            <li class="title_active"><a href='' id='new0' onClick=" return top.window.parent.left_nav.loadFrame2('new0','RTop','new/new.php')">New Patient</a></li>
+            <li class="title_active"><a href='' id='clear_active' style="display:none;" onClick="javascript:parent.left_nav.clearactive();return false;">Clear Active Patient</a></li>
+            <?php } //end of acl_check('patients','demo','',array('write','addonly') if ?>
+          <?php } else { ?><?php } ?>
+            <li style='margin-left:10px; vertical-align: middle; float:left; display:none' id="current_patient_block">
+            <span class='text'><?php xl('Patient','e'); ?>:&nbsp;</span><span class='title_bar_top' id="current_patient"><b><?php xl('None','e'); ?></b></span>           
+            </li>
+            <li style='margin-left:5px; vertical-align: middle; float:left; display:none' id="past_encounter_block">
+			<span class='title_bar_top' id="past_encounter"><b><?php echo htmlspecialchars( xl('None'), ENT_QUOTES) ?></b></span>
+            </li>
+            <li style='display:none; align="center";' class='text' id="current_encounter_block" >
+            <span class='text'><?php xl('Selected Encounter','e'); ?>:&nbsp;</span><span class='title_bar_top' id="current_encounter"><b><?php xl('None','e'); ?></b></span>
+            </li>
+            <!-- <li class="dropdown" >
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Action</a></li>
@@ -133,12 +147,15 @@ include_once('../globals.php');
                 <li><a href="#">Separated link</a></li>
                 <li><a href="#">One more separated link</a></li>
               </ul>
-            </li>
+            </li>-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top</a></li>
+            <li><a href='main_title.php' onclick="javascript:parent.left_nav.goHome();return false;" ><?php xl('Home','e'); ?></a></li>
+            <li><a href="http://open-emr.org/wiki/index.php/OpenEMR_4.1.2_Users_Guide" target="_blank" id="help_link" >
+			<?php xl('Manual','e'); ?></a></li>
+            <li><a href="../logout.php" target="_top" style='float:right;' id="logout_link" onclick="top.restoreSession()" >
+			<span><?php echo htmlspecialchars( xl('Logout'), ENT_QUOTES) ?></span></a></li>
+			<li><a>User:&nbsp;<span class="navbar-btn" title="<?php echo htmlspecialchars( xl('Authorization group') .': '.$_SESSION['authGroup'], ENT_QUOTES); ?>"><?php echo htmlspecialchars($res{"fname"}.' '.$res{"lname"},ENT_NOQUOTES); ?></span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
